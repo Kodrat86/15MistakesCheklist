@@ -203,13 +203,13 @@
     function pluralizeBall(n){const m10=n%10,m100=n%100;if(m10===1&&m100!==11)return'балл';if(m10>=2&&m10<=4&&(m100<12||m100>14))return'балла';return'баллов'}
     function getStatus(s){if(s<=3){return{label:'Всё хорошо',color:'var(--success)',text:'Ты на хорошем пути. Продолжай держать фокус на регулярном питании и воде. Хочешь ускорить прогресс — приходи на «Стартовый разбор питания».'}}if(s<=7){return{label:'Ты на грани',color:'var(--warn)',text:'Есть несколько ошибок, которые тянут энергию вниз. На разборе питания разберём причины и дадим понятный план исправления.'}}return{label:'Нужны изменения',color:'var(--danger)',text:'Ошибок накопилось много — отсюда усталость, тяга к сладкому и «качели» энергии. Я помогу безопасно выстроить рацион и привычки под твой график.'}}
     function buildAnswersList(){return QUESTIONS.map((_,i)=>{const n=i+1, c=document.querySelector(`input[name="q${n}"]:checked`);return `${n}. ${c?c.value:'-'}`}).join('%0A')}
-    function buildPrefilledMessage(score){return encodeURIComponent(`Привет, Надежда, я набрала ${score} ${pluralizeBall(score)}`)}
+    function buildPrefilledMessage(score){return encodeURIComponent(`Привет, Надежда, хочу записаться на разбор питания. Я набрала ${score} ${pluralizeBall(score)}`)}
     function updateTelegramLinks(score){
       const answers=buildAnswersList();
       const msg=`Мой результат чек-листа:%0A${answers}%0A%0AИтого: ${score} ${pluralizeBall(score)}`;
-      sendAnswersBtn.href=`https://t.me/share/url?url=&text=${msg}`;
+      sendAnswersBtn.href=`https://t.me/ShiNadin?text=${msg}`;
       const prefill=buildPrefilledMessage(score);
-      bookBtn.href=`https://t.me/share/url?url=https://t.me/Jew_without_diets&text=${prefill}`;
+      bookBtn.href=`https://t.me/ShiNadin?text=${prefill}`;
     }
 
     calcBtn.addEventListener('click',()=>{
